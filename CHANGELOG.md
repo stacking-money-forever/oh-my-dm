@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and releases follow [Semantic Versioning](https://semver.org/).
 
+## [0.2.6](https://github.com/stacking-money-forever/oh-my-dm/compare/v0.2.5...v0.2.6) (2026-09-02)
+
+
+### Bug Fixes
+
+* render conversation row segments independently ([860739f](https://github.com/stacking-money-forever/oh-my-dm/commit/860739f409a3287a17f9029388afbab59cab262a))
+
 ## [0.2.5](https://github.com/stacking-money-forever/oh-my-dm/compare/v0.2.4...v0.2.5) (2026-09-02)
 
 
