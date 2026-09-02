@@ -16,7 +16,7 @@ jobs:
     environment: npm
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.release.tag_name || github.ref }}
       - uses: actions/setup-node@v7
