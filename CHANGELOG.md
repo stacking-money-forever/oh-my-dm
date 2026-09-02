@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and releases follow [Semantic Versioning](https://semver.org/).
 
+## [0.3.0](https://github.com/stacking-money-forever/oh-my-dm/compare/v0.2.6...v0.3.0) (2026-09-02)
+
+
+### Features
+
+* split conversations by connector ([819d8e3](https://github.com/stacking-money-forever/oh-my-dm/commit/819d8e3f5dec628911de4f3f0bf0150e2bde1e07))
+
 ## [0.2.6](https://github.com/stacking-money-forever/oh-my-dm/compare/v0.2.5...v0.2.6) (2026-09-02)
 
 
