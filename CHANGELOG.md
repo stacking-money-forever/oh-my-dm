@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and releases follow [Semantic Versioning](https://semver.org/).
 
+## [0.4.0](https://github.com/stacking-money-forever/oh-my-dm/compare/v0.3.0...v0.4.0) (2026-09-02)
+
+
+### Features
+
+* load more conversations ([eded0b3](https://github.com/stacking-money-forever/oh-my-dm/commit/eded0b3ead38eda35315529f07beb47c32ffdbb4))
+
 ## [0.3.0](https://github.com/stacking-money-forever/oh-my-dm/compare/v0.2.6...v0.3.0) (2026-09-02)
 
 
