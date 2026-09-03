@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and releases follow [Semantic Versioning](https://semver.org/).
 
+## [0.6.2](https://github.com/stacking-money-forever/oh-my-dm/compare/v0.6.1...v0.6.2) (2026-09-03)
+
+
+### Bug Fixes
+
+* preserve history order and responsive layout ([97c0448](https://github.com/stacking-money-forever/oh-my-dm/commit/97c0448cbba9cf79960b0ab8b25e55c1ffb0858e))
+
 ## [0.6.1](https://github.com/stacking-money-forever/oh-my-dm/compare/v0.6.0...v0.6.1) (2026-09-03)
 
 
