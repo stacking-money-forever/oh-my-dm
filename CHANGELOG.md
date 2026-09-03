@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and releases follow [Semantic Versioning](https://semver.org/).
 
+## [0.5.1](https://github.com/stacking-money-forever/oh-my-dm/compare/v0.5.0...v0.5.1) (2026-09-03)
+
+
+### Bug Fixes
+
+* install Playwright browser in release checks ([043d812](https://github.com/stacking-money-forever/oh-my-dm/commit/043d8128343b728d9dc303d6c18f594842983746))
+* preserve position while browsing message history ([4f28e80](https://github.com/stacking-money-forever/oh-my-dm/commit/4f28e80ea33b641a425923d58537f0f6ce5db748))
+* stabilize Instagram message extraction ([8bf230d](https://github.com/stacking-money-forever/oh-my-dm/commit/8bf230da89f313b99a297f7a74b6c08cd9696c31))
+* stabilize KakaoTalk message submission ([d0b8dd2](https://github.com/stacking-money-forever/oh-my-dm/commit/d0b8dd24d685994420047bc1c740c1c9a3335d6d))
+
 ## [0.5.0](https://github.com/stacking-money-forever/oh-my-dm/compare/v0.4.0...v0.5.0) (2026-09-03)
 
 
