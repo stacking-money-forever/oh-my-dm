@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and releases follow [Semantic Versioning](https://semver.org/).
 
+## [0.5.0](https://github.com/stacking-money-forever/oh-my-dm/compare/v0.4.0...v0.5.0) (2026-09-03)
+
+
+### Features
+
+* add GLM and Kimi display models ([7cc7a26](https://github.com/stacking-money-forever/oh-my-dm/commit/7cc7a2639000b7adbedd5669a04c9caa9173c7d9))
+
+
+### Bug Fixes
+
+* normalize KakaoTalk conversation fields ([4b703b6](https://github.com/stacking-money-forever/oh-my-dm/commit/4b703b6fdcabb2d2cca47a538fda9f071799675f))
+* stabilize Playwright Instagram connector ([bac0bef](https://github.com/stacking-money-forever/oh-my-dm/commit/bac0bef8705cd4d48d04404dd4afe789affff193))
+
 ## [0.4.0](https://github.com/stacking-money-forever/oh-my-dm/compare/v0.3.0...v0.4.0) (2026-09-02)
 
 
