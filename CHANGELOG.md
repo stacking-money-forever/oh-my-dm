@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and releases follow [Semantic Versioning](https://semver.org/).
 
+## [0.6.3](https://github.com/stacking-money-forever/oh-my-dm/compare/v0.6.2...v0.6.3) (2026-09-03)
+
+
+### Bug Fixes
+
+* stabilize instagram sender and room selection ([6d6bce7](https://github.com/stacking-money-forever/oh-my-dm/commit/6d6bce7573820eb87d6f96df051775d2c073a0d8))
+
 ## [0.6.2](https://github.com/stacking-money-forever/oh-my-dm/compare/v0.6.1...v0.6.2) (2026-09-03)
 
 
