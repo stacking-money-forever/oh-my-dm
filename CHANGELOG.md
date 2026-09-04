@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and releases follow [Semantic Versioning](https://semver.org/).
 
+## [0.7.1](https://github.com/stacking-money-forever/oh-my-dm/compare/v0.7.0...v0.7.1) (2026-09-04)
+
+
+### Bug Fixes
+
+* simplify composer while typing ([2af872d](https://github.com/stacking-money-forever/oh-my-dm/commit/2af872d73f14d535195f346024cf204843152f9e))
+
 ## [0.7.0](https://github.com/stacking-money-forever/oh-my-dm/compare/v0.6.3...v0.7.0) (2026-09-04)
 
 
