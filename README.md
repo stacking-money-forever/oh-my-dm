@@ -194,6 +194,10 @@ Instagram DOM selector와 카카오톡 손쉬운 사용 UI 구조는 예고 없�
 
 Pull request를 열기 전에 [CONTRIBUTING.md](CONTRIBUTING.md)를 읽어주세요. 이 프로젝트는 Conventional Commits, 자동 검사와 Release Please를 사용합니다. 보안 문제는 공개 issue 대신 [SECURITY.md](SECURITY.md)의 절차에 따라 제보해주세요.
 
+### 라이선스
+
+[Apache License 2.0](LICENSE)
+
 ## English
 
 **DM without looking like you're DMing.**
@@ -385,6 +389,6 @@ Instagram DOM selectors and KakaoTalk accessibility UI structures can change wit
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. This project uses Conventional Commits, automated checks, and Release Please. Security reports should follow [SECURITY.md](SECURITY.md), not public issues.
 
-## License
+### License
 
 [Apache License 2.0](LICENSE)

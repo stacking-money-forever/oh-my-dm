@@ -1,52 +1,105 @@
-# Releasing
+# 릴리스 / Releasing
 
-Releases are automated; maintainers should not edit versions or tags manually.
+[한국어](#한국어) · [English](#english)
 
-## Flow
+## 한국어
 
-1. Merge Conventional Commit pull requests into `main`.
+릴리스는 자동화되어 있습니다. Maintainer는 version, tag 또는 생성된 changelog 항목을 직접 편집하지 않습니다.
+
+### 릴리스 흐름
+
+1. Conventional Commit 형식의 PR을 `main`에 병합합니다.
+2. Release Please가 다음 version과 changelog를 담은 release PR을 생성하거나 갱신합니다.
+3. Release PR의 CI와 내용을 확인한 뒤 병합합니다.
+4. Release Please가 `vX.Y.Z` tag와 GitHub Release를 생성합니다.
+5. `publish.yml`이 tag와 `package.json` version의 일치를 검증하고 build한 뒤 provenance를 포함해 npm에 배포합니다.
+
+Version 규칙:
+
+- `feat`: minor (`0.6.0` → `0.7.0`)
+- `fix` 또는 `perf`: patch (`0.6.0` → `0.6.1`)
+- `docs`, `test`, `ci`, `chore`: 단독으로는 release를 만들지 않음
+- `!` 또는 `BREAKING CHANGE:`: 1.0 이전에는 minor, 1.0 이후에는 major
+
+### 자동 릴리스 실행
+
+사용자가 현재 변경분의 QA 통과를 명시하고 배포를 요청한 경우에만 저장소용 release automation을 실행합니다. 자동화는 정확히 staging된 diff를 다시 검증하고 commit, push, main CI 확인, release PR 검사와 병합, GitHub Release 생성, npm Trusted Publishing 확인을 순서대로 수행합니다. 실패한 단계가 있으면 우회하지 않고 그 자리에서 중단합니다.
+
+### npm Trusted Publishing
+
+npm package 설정에는 다음 GitHub Actions trusted publisher가 등록되어 있어야 합니다.
+
+- Organization 또는 user: `stacking-money-forever`
+- Repository: `oh-my-dm`
+- Workflow: `publish.yml`
+- Environment: `npm`
+- Allowed action: `npm publish`
+
+GitHub의 `npm` environment는 production publishing을 보호합니다. Workflow는 prerelease가 아닌 GitHub Release에서만 실행되고 tag가 `package.json`과 정확히 일치하는지 확인합니다. 이미 npm에 존재하는 version은 안전하게 건너뜁니다. 모든 자동 배포는 단기 OIDC credential과 npm provenance를 사용하며 npm automation token을 GitHub에 저장하지 않습니다.
+
+### GitHub Release 설정
+
+Release Please가 release PR을 만들려면 다음 중 하나가 필요합니다.
+
+1. **Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests**를 organization 또는 repository에서 허용하거나,
+2. 이 저장소만 대상으로 **Contents: write**, **Pull requests: write** 권한을 가진 fine-grained PAT 또는 GitHub App token을 `RELEASE_PLEASE_TOKEN` repository secret으로 추가합니다.
+
+Token은 관련 없는 organization 권한을 포함하면 안 되며 repository에 commit하지 않습니다. Release PR을 병합하는 로컬 `gh` CLI 계정도 저장소 write 권한과 유효한 인증을 가지고 있어야 합니다.
+
+### 장애 복구
+
+- 검증 실패: source를 수정한 새 PR을 만들고 기존 tag를 이동하지 마세요.
+- GitHub Release는 생성됐지만 npm publish가 실패: environment 또는 trusted publisher를 수정하고 실패한 workflow를 다시 실행하세요.
+- 같은 version이 npm에 이미 존재: 덮어쓰지 말고 새 fix commit과 release를 만드세요.
+- Release가 손상됨: npm version을 deprecate하고 수정 version을 배포한 뒤 [SECURITY.md](../SECURITY.md)를 따르세요.
+
+## English
+
+Releases are automated. Maintainers must not edit versions, tags, or generated changelog entries manually.
+
+### Release flow
+
+1. Merge pull requests with Conventional Commit titles into `main`.
 2. Release Please creates or updates a release PR containing the next version and changelog.
-3. Review and merge the release PR.
+3. Review its CI and contents, then merge the release PR.
 4. Release Please creates a `vX.Y.Z` tag and GitHub Release.
-5. `publish.yml` verifies, builds, and publishes the exact tagged version to npm with provenance.
+5. `publish.yml` verifies that the tag matches `package.json`, builds the package, and publishes it to npm with provenance.
 
 Version rules:
 
-- `feat`: minor (`0.1.0` → `0.2.0`)
-- `fix` or `perf`: patch (`0.1.0` → `0.1.1`)
+- `feat`: minor (`0.6.0` → `0.7.0`)
+- `fix` or `perf`: patch (`0.6.0` → `0.6.1`)
 - `docs`, `test`, `ci`, and `chore`: no release by themselves
 - `!` or `BREAKING CHANGE:`: minor before 1.0, major after 1.0
 
-## One-time npm setup
+### Running the automated release
 
-The package does not exist on npm yet, so bootstrap it once without an automation token:
+Run the repository release automation only after the user explicitly confirms that the current changes passed QA and asks to deploy them. The automation re-verifies the exact staged diff, commits, pushes, checks main CI, checks and merges the release PR, creates the GitHub Release, and verifies npm Trusted Publishing in that order. If any stage fails, stop there without bypassing it.
 
-1. Enable two-factor authentication on the maintainer's npm account.
-2. Run `npm publish --access public --provenance=false --otp=<current OTP>` locally for `0.1.0`.
-3. In the new npm package settings, add a GitHub Actions trusted publisher:
-   - Organization or user: `stacking-money-forever`
-   - Repository: `oh-my-dm`
-   - Workflow: `publish.yml`
-   - Environment: `npm`
-   - Allowed action: `npm publish`
-4. Create the matching `v0.1.0` GitHub Release. The workflow detects that `0.1.0` already exists and safely skips republishing it.
+### npm Trusted Publishing
 
-The GitHub environment named `npm` already exists. Optional required reviewers can protect production publishing.
+The npm package settings must contain this GitHub Actions trusted publisher:
 
-The workflow publishes only from a non-prerelease GitHub Release whose tag exactly matches `package.json`. It has no manual publish trigger and safely skips a version that already exists on npm. Every automated release uses Trusted Publishing with short-lived OIDC credentials and npm provenance; no npm automation token is stored in GitHub.
+- Organization or user: `stacking-money-forever`
+- Repository: `oh-my-dm`
+- Workflow: `publish.yml`
+- Environment: `npm`
+- Allowed action: `npm publish`
 
-## One-time GitHub release setup
+The GitHub environment named `npm` protects production publishing. The workflow runs only for a non-prerelease GitHub Release and verifies that its tag exactly matches `package.json`. It safely skips a version that already exists on npm. Every automated release uses short-lived OIDC credentials and npm provenance; no npm automation token is stored in GitHub.
+
+### GitHub Release setup
 
 Release Please needs permission to create a release pull request. Choose one option:
 
-1. Enable **Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests** at the organization/repository level; or
+1. Enable **Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests** at the organization or repository level; or
 2. Add a repository secret named `RELEASE_PLEASE_TOKEN` containing a fine-grained PAT or GitHub App token scoped only to this repository with **Contents: write** and **Pull requests: write**.
 
-The `stacking-money-forever` organization currently prevents the repository from enabling this permission locally, so option 2 is required unless an organization owner changes the organization policy. Until the secret exists, the release step is safely skipped with a warning. Never use or commit a classic token with unrelated organization access.
+The token must not include unrelated organization access and must never be committed. The local `gh` CLI account used to merge the release PR also needs repository write access and valid authentication.
 
-## Recovery
+### Recovery
 
-- Failed verification: fix the source through a pull request; never move an existing tag.
+- Failed verification: fix the source through a new pull request; never move an existing tag.
 - GitHub Release exists but npm publish failed: fix the environment or trusted publisher and rerun the failed workflow.
 - Version already exists on npm: do not overwrite it. Create a new fix commit and release.
-- Compromised release: deprecate the npm version, publish a fixed version, and follow `SECURITY.md`.
+- Compromised release: deprecate the npm version, publish a fixed version, and follow [SECURITY.md](../SECURITY.md).
